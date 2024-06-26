@@ -1,0 +1,15 @@
+docker pull mongo
+
+
+docker run -d --name mongodb -p 27017:27017 mongo
+
+
+docker cp H:\JSKolokwium\A\Customers.json  mongodb:/Customers.json
+docker cp H:\JSKolokwium\A\Orders.json  mongodb:/Orders.json
+docker cp H:\JSKolokwium\A\Products.json  mongodb:/Products.json
+
+docker exec -it mongodb bash
+
+mongoimport --db mongodb --collection Customers--file /Customers.json --jsonArray
+mongoimport --db mongodb --collection Orders--file /Orders.json --jsonArray
+mongoimport --db mongodb --collection Products --file /Products.json --jsonArray
